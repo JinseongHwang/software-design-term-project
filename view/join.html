@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <style>
+        .title {
+            display: inline-block;
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<h1>소실대학교 회원가입</h1>
+<form action="/join" method="post">
+    <span class="title">학번: </span>
+    <input type="text" name="studentNumber" required><br>
+    <span class="title">비밀번호: </span>
+    <input type="password" name="password" required><br>
+    <input type="submit" value="회원가입">
+    <input type="reset" value="초기화">
+</form>
+
+</body>
+</html>
