@@ -90,6 +90,11 @@
     color: #000000;
     text-decoration: none;
     font-weight: bold;
+    transition: all 0.5s;
+}
+
+.submit:hover {
+    box-shadow: 400px 0 0 0 rgba(0,0,0,0.2) inset, -400px 0 0 0 rgba(0,0,0,0.2) inset;
 }
 
 .checkbox {
