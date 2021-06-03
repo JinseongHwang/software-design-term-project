@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
-    <style>
-        .title {
-            display: inline-block;
-            width: 70px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>소실대학교 로그인</h1>
-<form action="/login" method="post">
-    <span class="title">학번: </span>
-    <input type="text" name="studentNumber" required><br>
-    <span class="title">비밀번호: </span>
-    <input type="password" name="password" required><br>
-    <input type="submit" value="로그인">
-    <input type="reset" value="초기화">
-</form>
+<div class="wrap">
+    <div class="form-wrap" align="center">
+        <h1>소실대학교 로그인</h1>
+        <br>
+        <form action="/login" method="post">
+            <input type="text" name="studentNumber" class="input-field" placeholder="학번" required><br>
+            <input type="password" name="password" class="input-field" placeholder="비밀번호" required><br>
+            <br>
+            <input type="submit" value="로그인" class="submit"><br>
+            <input type="reset" value="초기화" class="submit">
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
