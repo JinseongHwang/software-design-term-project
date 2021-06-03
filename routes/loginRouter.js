@@ -6,7 +6,7 @@ const { encrypt } = require('../utils/EncryptPassword');
 const router = express.Router();
 
 router.get('/login', async (req, res) => {
-  res.render('../view/login.html');
+  res.render('../public/login.html');
 });
 
 router.post('/login', async (req, res) => {
@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/join', async (req, res) => {
-  res.render('../view/join.html');
+  res.render('../public/join.html');
 });
 
 router.post('/join', async (req, res) => {

@@ -14,7 +14,7 @@ const loginRouter = require('./routes/loginRouter');
 const sugangRouter = require('./routes/sugangRouter');
 
 app.use(morgan('dev'));
-app.use(express.static('/view'));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -30,8 +30,8 @@ app.use(
   }),
 );
 
-app.set('view engine', 'html');
-app.set('views', __dirname + '/view');
+app.set('public engine', 'html');
+app.set('views', __dirname + '/public');
 app.engine('html', require('ejs').renderFile);
 
 app.use('/', indexRouter);
