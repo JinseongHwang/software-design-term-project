@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>수강 신청 내역</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<script>
+  $(() => {
+    $.ajax({
+      url: '/sugang/content',
+      type: 'POST',
+      success: (result) => {
+        for (const res of result) {
+          const subject = res.subject;
+          const time = res.time;
+          const additionalHtml = `<tr><td>${subject}</td><td>${time}</td></tr>`;
+          const originHtml = $('.table').html();
+          $('.table').html(originHtml + additionalHtml);
+        }
+      }
+    });
+  });
+</script>
+<body>
+<div class="wrap">
+    <div class="form-wrap" align="center">
+        <h1>수강 신청 내역</h1><br>
+        <table class="table">
+            <tr>
+                <th>과목명</th>
+                <th>시간</th>
+            </tr>
+            <tr>
+                <td>컴퓨터 구조</td>
+                <td>16:30~18:00</td>
+            </tr>
+            <tr>
+                <td>알고리즘</td>
+                <td>12:00~14:00</td>
+            </tr>
+            <tr>
+                <td>인공지능</td>
+                <td>04:00~21:00</td>
+            </tr>
+        </table>
+        <br>
+        <form action="/" method="get">
+            <input type="submit" value="홈으로" class="submit">
+        </form><br>
+        <form action="/sugang" method="get">
+            <input type="submit" value="뒤로가기" class="submit">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,19 +1,19 @@
 const memberRepository = require('../repository/memberRepository');
 
-const join = (id, password) => {
+const join = async (id, password) => {
   const newMember = {
     id: id,
     password: password,
   };
-  if (memberRepository.validateDuplicateMember(newMember)) {
-    memberRepository.save(newMember);
+  if (await memberRepository.validateDuplicateMember(newMember)) {
+    await memberRepository.save(newMember);
     return true; // 회원가입 성공
   }
   return false; // 회원가입 실패
 };
 
-const login = (id, password) => {
-  return memberRepository.validateLoginRequest(id, password);
+const login = async (id, password) => {
+  return await memberRepository.validateLoginRequest(id, password);
 };
 
 module.exports = {

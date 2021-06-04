@@ -1,20 +1,20 @@
 const sugangRepository = [];
 
-const save = (studentNumber, subject, time) => {
+const save = async (studentNumber, subject, time) => {
   if (!sugangRepository[studentNumber]) {
     sugangRepository[studentNumber] = [{
       subject: subject,
       time: time,
     }];
   } else {
-    sugangRepository[studentNumber].push({
+    await sugangRepository[studentNumber].push({
       subject: subject,
       time: time,
     });
   }
 }
 
-const findContentByStudentNumber = (studentNumber) => {
+const findContentByStudentNumber = async (studentNumber) => {
   return sugangRepository[studentNumber];
 }
 

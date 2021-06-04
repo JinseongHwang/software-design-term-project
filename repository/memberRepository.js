@@ -1,15 +1,15 @@
 const memberRepository = [];
 
-const save = (member) => {
+const save = async (member) => {
   const newMember = {
     id: member.id,
     password: member.password,
   };
-  memberRepository.push(newMember);
+  await memberRepository.push(newMember);
 };
 
-const validateDuplicateMember = (member) => {
-  const findMember = memberRepository.find(
+const validateDuplicateMember = async (member) => {
+  const findMember = await memberRepository.find(
     (existMember) => existMember.id === member.id,
   );
   if (findMember) {
@@ -18,8 +18,8 @@ const validateDuplicateMember = (member) => {
   return true;
 };
 
-const validateLoginRequest = (id, password) => {
-  const findMember = memberRepository.find((existMember) => {
+const validateLoginRequest = async (id, password) => {
+  const findMember = await memberRepository.find((existMember) => {
     if (existMember.id === id && existMember.password === password) return true;
   });
   if (findMember) {

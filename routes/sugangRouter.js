@@ -4,17 +4,27 @@ const sugangService = require('../service/sugangService');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   res.render('../public/sugang.html');
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', async (req, res) => {
   const subject = req.query.subject;
   const time = req.query.time;
   const studentNumber = req.cookies.studentNumber;
 
-  sugangService.register(studentNumber, subject, time);
-  Notification.registerSuccessNotice();
+  await sugangService.register(studentNumber, subject, time);
+  await Notification.registerSuccessNotice();
+});
+
+router.get('/content', async (req, res) => {
+  res.render('../public/sugangTable.html');
+});
+
+router.post('/content', async (req, res) => {
+  const studentNumber = req.cookies.studentNumber;
+  const resultPromise = sugangService.getContent(studentNumber);
+  resultPromise.then(value => res.send(value));
 });
 
 module.exports = router;
