@@ -13,6 +13,10 @@ const indexRouter = require('./routes/indexRouter');
 const loginRouter = require('./routes/loginRouter');
 const sugangRouter = require('./routes/sugangRouter');
 
+app.set('public engine', 'html');
+app.set('views', __dirname + '/public');
+app.engine('html', require('ejs').renderFile);
+
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.json());
@@ -29,10 +33,6 @@ app.use(
     },
   }),
 );
-
-app.set('public engine', 'html');
-app.set('views', __dirname + '/public');
-app.engine('html', require('ejs').renderFile);
 
 app.use('/', indexRouter);
 app.use('/', loginRouter);
