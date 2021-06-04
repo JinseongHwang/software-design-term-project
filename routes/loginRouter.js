@@ -15,6 +15,7 @@ router.post('/login', async (req, res) => {
     encrypt(req.body.password.toString()),
   );
   if (result) {
+    res.cookie('studentNumber', req.body.studentNumber);
     res.status(200).redirect('/sugang');
   } else {
     Notification.memberInformationWrongNotice();
@@ -33,7 +34,7 @@ router.post('/join', async (req, res) => {
   );
   if (result) {
     Notification.memberJoinSuccessNotice(req.body.studentNumber);
-    res.status(200).redirect('/sugang');
+    res.status(200).redirect('/');
   } else {
     Notification.memberDuplicateNotice();
     res.redirect('/join');

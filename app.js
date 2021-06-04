@@ -36,7 +36,7 @@ app.use(
 
 app.use('/', indexRouter);
 app.use('/', loginRouter);
-app.use('/', sugangRouter);
+app.use('/sugang', sugangRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Current app listening at http://localhost:${process.env.PORT}`);
