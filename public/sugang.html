@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>수강 신청</title>
+    <title>수강신청</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  수강 신청
+<div class="wrap">
+    <div class="form-wrap" align="center">
+        <h1>수강 신청</h1>
+        <br>
+        <form action="/sugang/new" method="get">
+            <input type="text" name="subject" class="input-field" placeholder="신청 과목명" required><br>
+            <input type="text" name="time" class="input-field" placeholder="시간" required><br>
+            <br>
+            <input type="submit" value="신청" class="submit"><br>
+            <input type="reset" value="초기화" class="submit"><br>
+        </form>
+        <form action="/">
+            <input type="submit" value="홈으로" class="submit">
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
