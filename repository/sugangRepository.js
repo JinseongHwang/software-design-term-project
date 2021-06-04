@@ -14,6 +14,11 @@ const save = (studentNumber, subject, time) => {
   }
 }
 
+const findContentByStudentNumber = (studentNumber) => {
+  return sugangRepository[studentNumber];
+}
+
 module.exports = {
   save,
+  findContentByStudentNumber,
 };
