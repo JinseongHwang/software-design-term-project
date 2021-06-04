@@ -5,9 +5,10 @@ const session = require('express-session');
 const path = require('path');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: path.join(__dirname, 'config/.env') });
+dotenv.config({path: path.join(__dirname, 'config/.env')});
 
 const app = express();
+const {sequelize} = require('./models');
 
 const indexRouter = require('./routes/indexRouter');
 const loginRouter = require('./routes/loginRouter');
@@ -17,10 +18,14 @@ app.set('public engine', 'html');
 app.set('views', __dirname + '/public');
 app.engine('html', require('ejs').renderFile);
 
+sequelize.sync({force: true})
+  .then(() => console.log('DB Connect Success.'))
+  .catch((err) => console.error(err));
+
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   session({
