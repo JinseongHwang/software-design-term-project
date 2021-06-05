@@ -1,16 +1,18 @@
+// const {Member} = require('../models/member');
+
 const memberRepository = [];
 
-const save = async (member) => {
+const save = async (id, password) => {
   const newMember = {
-    id: member.id,
-    password: member.password,
+    id: id,
+    password: password,
   };
   await memberRepository.push(newMember);
 };
 
-const validateDuplicateMember = async (member) => {
+const validateDuplicateMember = async (memberId) => {
   const findMember = await memberRepository.find(
-    (existMember) => existMember.id === member.id,
+    (existMember) => existMember.id === memberId,
   );
   if (findMember) {
     return false;

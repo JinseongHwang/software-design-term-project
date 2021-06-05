@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
     res.cookie('studentNumber', req.body.studentNumber);
     res.status(200).redirect('/sugang');
   } else {
-    Notification.memberInformationWrongNotice();
+    await Notification.memberInformationWrongNotice();
     res.redirect('/login');
   }
 });
@@ -33,10 +33,10 @@ router.post('/join', async (req, res) => {
     encrypt(req.body.password.toString()),
   );
   if (result) {
-    Notification.memberJoinSuccessNotice(req.body.studentNumber);
+    await Notification.memberJoinSuccessNotice(req.body.studentNumber);
     res.status(200).redirect('/');
   } else {
-    Notification.memberDuplicateNotice();
+    await Notification.memberDuplicateNotice();
     res.redirect('/join');
   }
 });
