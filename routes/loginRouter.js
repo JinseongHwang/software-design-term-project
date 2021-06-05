@@ -10,9 +10,9 @@ router.get('/login', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const result = loginService.login(
+  const result = await loginService.login(
     req.body.studentNumber,
-    encrypt(req.body.password.toString()),
+    (await encrypt(req.body.password)).toString(),
   );
   if (result) {
     res.cookie('studentNumber', req.body.studentNumber);
@@ -28,9 +28,9 @@ router.get('/join', async (req, res) => {
 });
 
 router.post('/join', async (req, res) => {
-  const result = loginService.join(
+  const result = await loginService.join(
     req.body.studentNumber,
-    encrypt(req.body.password.toString()),
+    (await encrypt(req.body.password)).toString(),
   );
   if (result) {
     await Notification.memberJoinSuccessNotice(req.body.studentNumber);

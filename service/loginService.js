@@ -1,7 +1,8 @@
 const memberRepository = require('../repository/memberRepository');
 
 const join = async (id, password) => {
-  if (await memberRepository.validateDuplicateMember(id)) {
+  const findMember = await memberRepository.findMemberByStudentNumber(id);
+  if (!findMember) {
     await memberRepository.save(id, password);
     return true; // 회원가입 성공
   }
@@ -9,7 +10,7 @@ const join = async (id, password) => {
 };
 
 const login = async (id, password) => {
-  return await memberRepository.validateLoginRequest(id, password);
+  return await memberRepository.findMemberByStudentNumberAndPassword(id, password);
 };
 
 module.exports = {
