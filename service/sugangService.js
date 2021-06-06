@@ -5,7 +5,7 @@ const register = async (studentNumber, subject, time) => {
 }
 
 const getContent = async (studentNumber) => {
-  return sugangRepository.findContentByStudentNumber(studentNumber);
+  return sugangRepository.findContentsByStudentNumber(studentNumber);
 }
 
 module.exports = {

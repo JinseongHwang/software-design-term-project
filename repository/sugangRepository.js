@@ -1,24 +1,55 @@
-const sugangRepository = [];
+const {Enrol, sequelize} = require('../models');
+const {findMemberByStudentNumber} = require('./memberRepository');
 
 const save = async (studentNumber, subject, time) => {
-  if (!sugangRepository[studentNumber]) {
-    sugangRepository[studentNumber] = [{
-      subject: subject,
-      time: time,
-    }];
-  } else {
-    await sugangRepository[studentNumber].push({
-      subject: subject,
-      time: time,
-    });
-  }
+  const memberPk = await findMemberByStudentNumber(studentNumber)
+    .then((res) => res.id);
+  await Enrol.create({
+    subject: subject,
+    time: time,
+    enrol_student: memberPk,
+  });
+  // await sequelize.query(
+  //   `INSERT INTO term_project.Enrols (subject, time, createdAt, updatedAt, enrol_student) VALUES ('${subject}', '${time}', now(), now(), '${memberPk}');`
+  // );
 }
 
-const findContentByStudentNumber = async (studentNumber) => {
-  return sugangRepository[studentNumber];
+const findContentsByStudentNumber = async (studentNumber) => {
+  const memberPk = await findMemberByStudentNumber(studentNumber)
+    .then((res) => res.id);
+  return await Enrol.findAll({
+    where: {
+      enrol_student: memberPk,
+    }
+  });
 }
 
 module.exports = {
   save,
-  findContentByStudentNumber,
+  findContentsByStudentNumber,
 };
+
+// const sugangRepository = [];
+//
+// const save = async (studentNumber, subject, time) => {
+//   if (!sugangRepository[studentNumber]) {
+//     sugangRepository[studentNumber] = [{
+//       subject: subject,
+//       time: time,
+//     }];
+//   } else {
+//     await sugangRepository[studentNumber].push({
+//       subject: subject,
+//       time: time,
+//     });
+//   }
+// }
+//
+// const findContentByStudentNumber = async (studentNumber) => {
+//   return sugangRepository[studentNumber];
+// }
+//
+// module.exports = {
+//   save,
+//   findContentByStudentNumber,
+// };
