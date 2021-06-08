@@ -5,8 +5,8 @@ const validateStudentNumber = (studentNumber) => {
   return regex.test(studentNumber);
 }
 
-const validatePasswordLength = (password) => {
-  return password.length >= MIN_PASSWORD_LENGTH;
+const validatePasswordLength = (passwordLength) => {
+  return passwordLength >= MIN_PASSWORD_LENGTH;
 }
 
 // 시간 관련 함수
